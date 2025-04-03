@@ -392,14 +392,23 @@ static void updateThrottles() {
 	// Only report fail if you have one (many people don't)
 	engine->outputChannels.isPedalError = !pedal.Valid;
 
-	// TPS 1 pri/sec split
-	engine->outputChannels.tps1Split = Sensor::getOrZero(SensorType::Tps1Primary) - Sensor::getOrZero(SensorType::Tps1Secondary);
+	// TPS 1 pri/sec split unless allowIdenticalPps is set
+	if (!engineConfiguration->allowIdenticalPps) {
+		engine->outputChannels.tps1Split = Sensor::getOrZero(SensorType::Tps1Primary) - Sensor::getOrZero(SensorType::Tps1Secondary);
+	} else {
+		engine->outputChannels.tps1Split = 0;
+	}
 	// TPS 2 pri/sec split
 	engine->outputChannels.tps2Split = Sensor::getOrZero(SensorType::Tps2Primary) - Sensor::getOrZero(SensorType::Tps2Secondary);
 	// TPS1 - TPS2 split
 	engine->outputChannels.tps12Split = Sensor::getOrZero(SensorType::Tps1) - Sensor::getOrZero(SensorType::Tps2);
-	// Pedal pri/sec split
-	engine->outputChannels.accPedalSplit = Sensor::getOrZero(SensorType::AcceleratorPedalPrimary) - Sensor::getOrZero(SensorType::AcceleratorPedalSecondary);
+
+	// Pedal pri/sec split unless allowIdenticalPps is set
+	if (!engineConfiguration->allowIdenticalPps) {
+		engine->outputChannels.accPedalSplit = Sensor::getOrZero(SensorType::AcceleratorPedalPrimary) - Sensor::getOrZero(SensorType::AcceleratorPedalSecondary);
+	} else {
+		engine->outputChannels.accPedalSplit = 0;
+	}
 	updateUnfilteredRawPedal();
 }
 

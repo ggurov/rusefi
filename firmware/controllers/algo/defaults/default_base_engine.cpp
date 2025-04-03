@@ -387,8 +387,16 @@ void setDefaultBaseEngine() {
 	setRpmTableBin(config->minimumOilPressureBins);
 	setRpmTableBin(config->maximumOilPressureBins);
 
-  // we invoke this last so that we can validate even defaults
-  defaultsOrFixOnBurn();
+	engineConfiguration->fixSyncMisfire = 0;
+
+	for (size_t j=0;j<BUTTON_BOX_CMDS;j++) {
+		config->buttonBoxCmds[j] = 0;
+		config->buttonBoxBins[j] = 0;
+	}
+
+	config->canBoxIdleUpRpm = 300;
+	config->canBoxIdleUpPercentage = 5;
+	defaultsOrFixOnBurn();
 }
 
 void setPPSInputs(adc_channel_e pps1, adc_channel_e pps2) {

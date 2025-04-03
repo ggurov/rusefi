@@ -1165,7 +1165,7 @@ custom pin_mode_e 1 bits, U08, @OFFSET@, [0:6], @@pin_mode_e_enum@@
 	float tachPulseDuractionMs;Duration in ms or duty cycle depending on selected mode;"", 1, 0, 0, 100, 2
 
 
-	float wwaeTau;Length of time the deposited wall fuel takes to dissipate after the start of acceleration. ;"Seconds", 1, 0, 0, 3, 2
+	float wwaeTau;Length of time the deposited wall fuel takes to dissipate after the start of acceleration. ;"Seconds", 1, 0, 0, 3, 4
 	pid_s alternatorControl;
 	pid_s etb;
 	Gpio[TRIGGER_INPUT_PIN_COUNT iterate] triggerInputDebugPins;
@@ -1176,8 +1176,7 @@ int16_t tps2Max;Full throttle#2. tpsMax value as 10 bit ADC value. Not Voltage!\
 	output_pin_e starterControlPin;See also startStopButtonPin
 	pin_input_mode_e startStopButtonMode;
 	Gpio mc33816_flag0;
-
-  uint16_t autoscale tachPulsePerRev;;"", 0.001, 0, 1, 15, 3
+    uint16_t autoscale tachPulsePerRev;;"", 0.001, 0, 0.1, 15, 3
 
 ! todo: mapErrorDetectionIdleTooLow? 30kPa is usually lowest on idle
 	float mapErrorDetectionTooLow;kPa value which is too low to be true;"kPa", 1, 0, -100, 100, 2
@@ -1185,7 +1184,7 @@ int16_t tps2Max;Full throttle#2. tpsMax value as 10 bit ADC value. Not Voltage!\
 	uint16_t autoscale multisparkSparkDuration;How long to wait for the spark to fire before recharging the coil for another spark.;"ms", 0.001, 0, 0, 3, 2
 	uint16_t autoscale multisparkDwell;This sets the dwell time for subsequent sparks. The main spark's dwell is set by the dwell table.;"ms", 0.001, 0, 0, 3, 2
 	pid_s idleRpmPid;See cltIdleRpmBins
-	float wwaeBeta;0 = No fuel settling on port walls 1 = All the fuel settling on port walls setting this to 0 disables the wall wetting enrichment. ;"Fraction", 1, 0, 0, 1, 2
+	float wwaeBeta;0 = No fuel settling on port walls 1 = All the fuel settling on port walls setting this to 0 disables the wall wetting enrichment. ;"Fraction", 1, 0, 0, 1, 4
 
 	Gpio binarySerialTxPin;See also EFI_CONSOLE_RX_BRAIN_PIN
 	Gpio binarySerialRxPin;
@@ -1240,7 +1239,7 @@ int16_t tps2Max;Full throttle#2. tpsMax value as 10 bit ADC value. Not Voltage!\
 	uint8_t coastingFuelCutVssLow;Below this speed, disable DFCO. Use this to prevent jerkiness from fuel enable/disable in low gears.;"kph", 1, 0, 0, 255, 0
 	uint8_t coastingFuelCutVssHigh;Above this speed, allow DFCO. Use this to prevent jerkiness from fuel enable/disable in low gears.;"kph", 1, 0, 0, 255, 0
 
-	float tpsAccelEnrichmentThreshold;Maximum change delta of TPS percentage over the 'length'. Actual TPS change has to be above this value in order for TPS/TPS acceleration to kick in.;"roc", 1, 0, 0, 200, 1
+	float tpsAccelEnrichmentThreshold;Maximum change delta of TPS percentage over the 'length'. Actual TPS change has to be above this value in order for TPS/TPS acceleration to kick in.;"roc", 1, 0, 0, 200, 3
 
 #define AUX_SPEED_SENSOR_COUNT 2
     brain_input_pin_e[AUX_SPEED_SENSOR_COUNT iterate] auxSpeedSensorInputPin;
@@ -1735,12 +1734,12 @@ uint8_t autoscale knockFuelTrim;Fuel trim when knock, max 30%;"%", 1, 0, 0, 30, 
     SentFuelHighPressureType FuelHighPressureSentType;If you have SENT High Pressure Fuel Sensor please select type. For analog TPS leave None
 
 	bit nitrousControlEnabled
-	bit unusedFancy2
-	bit unusedFancy3
-	bit unusedFancy4
-	bit unusedFancy5
-	bit unusedFancy6
-	bit unusedFancy7
+	bit tpsAccelAeEnabled;TPS acceleration enrichment enabled
+	bit wallWettingAeEnabled;Wall wetting accelerating enrichment enabled
+    bit useMapEstimateDuringTransient;During the TPS AE period, use the MAP estimate table value instead of true MAP (if greater than real MAP). This basically briefly runs in alpha-n during a transient, then returns to normal speed-density mode.
+    bit allowDFUwithIgn;danger zone - allow entry into DFU with 12v active - if injection/ignition is connected to usart1/usart3, their state is unpredictable in DFU
+    bit STFTResetRegionChange; reset STFT on region change
+    bit fixSyncMisfire; don't reset instantRPM to 0 at cam sync
 	bit unusedFancy8
 	bit unusedFancy9
 	bit unusedFancy10
@@ -1824,7 +1823,11 @@ uint8_t autoscale knockFuelTrim;Fuel trim when knock, max 30%;"%", 1, 0, 0, 30, 
 	int8_t[8] airmassToTimingValues;;"deg", 1, 0, -30, 30, 0
 	uint8_t autoscale idleReturnTargetRampDuration;idle return target ramp duration;"seconds", 0.1, 0, 0.1, 15, 1
 
-#define END_OF_CALIBRATION_PADDING 53
+	uint8_t autoscale pedalToTpsIndex;which PPS to TPS table to use;"#", 1, 0, 0, 4, 0
+    float afrTrimRangeMax;"maximum afr trim"; "(lambda)", 1, 0, 0, 0.5, 3
+    float afrTrimRangeMin;"minimum afr trim"; "(lambda)", 1, 0, -0.5, 0, 3
+
+#define END_OF_CALIBRATION_PADDING 44
 uint8_t[END_OF_CALIBRATION_PADDING] unusedOftenChangesDuringFirmwareUpdate;;"units", 1, 0, 0, 1, 0, noMsqSave
 
 ! end of engine_configuration_s
@@ -1848,7 +1851,7 @@ uint8_t[TORQUE_CURVE_SIZE x TORQUE_CURVE_SIZE] autoscale torqueTable;;"Nm", 10, 
 	int16_t[CRANKING_ENRICH_COUNT] postCrankingCLTBins;;"C", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 0
 
 
-		float[ETB_BIAS_CURVE_LENGTH] etbBiasBins;target TPS value, 0 to 100%\nTODO: use int8 data date once we template interpolation method;"target TPS position", 1, 0, 0, 100, 0
+		float[ETB_BIAS_CURVE_LENGTH] etbBiasBins;target TPS value, 0 to 100%\nTODO: use int8 data date once we template interpolation method;"target TPS position", 1, 0, 0, 100, 2
 		float[ETB_BIAS_CURVE_LENGTH] etbBiasValues;PWM bias, open loop component of PID closed loop control;"ETB duty cycle bias", 1, 0, -100, 100, 2
 
 	uint8_t[IAC_PID_MULT_SIZE x IAC_PID_MULT_SIZE] autoscale iacPidMultTable;;"%", 0.05, 0, 0, 10, 2
@@ -1903,8 +1906,13 @@ uint8_t[PEDAL_TO_TPS_SIZE x PEDAL_TO_TPS_SIZE] pedalToTpsTable;;"%", 1, 0, 0, 10
 uint8_t[PEDAL_TO_TPS_SIZE] pedalToTpsPedalBins;;"%", 1, 0, 0, 120, 0
 uint8_t[PEDAL_TO_TPS_SIZE] autoscale pedalToTpsRpmBins;;"RPM", 100, 0, 0, 25000, 0
 
-float[CLT_CRANKING_CURVE_SIZE] cltCrankingCorrBins;CLT-based cranking position % for simple manual idle controller;"C", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
-float[CLT_CRANKING_CURVE_SIZE] cltCrankingCorr    ;CLT-based cranking position % for simple manual idle controller;"percent", 1, 0, 0, 100, 2
+uint8_t[PEDAL_TO_TPS_SIZE x PEDAL_TO_TPS_SIZE] pedalToTpsTable2;;"%", 1, 0, 0, 100, 0
+uint8_t[PEDAL_TO_TPS_SIZE x PEDAL_TO_TPS_SIZE] pedalToTpsTable3;;"%", 1, 0, 0, 100, 0
+uint8_t[PEDAL_TO_TPS_SIZE x PEDAL_TO_TPS_SIZE] pedalToTpsTable4;;"%", 1, 0, 0, 100, 0
+
+
+float[CLT_CRANKING_CURVE_SIZE] cltCrankingCorrBins;CLT-based cranking position multiplier for simple manual idle controller;"C", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
+float[CLT_CRANKING_CURVE_SIZE] cltCrankingCorr    ;CLT-based cranking position multiplier for simple manual idle controller;"%", 1, 0, 0, 500, 2
 
 uint8_t[IDLE_ADVANCE_CURVE_SIZE] autoscale idleAdvanceBins;Optional timing advance table for Idle (see useSeparateAdvanceForIdle);"RPM", 50, 0, 0, 12000, 0
 float[IDLE_ADVANCE_CURVE_SIZE] idleAdvance    ;Optional timing advance table for Idle (see useSeparateAdvanceForIdle);"deg", 1, 0, -20, 90, 1
@@ -1923,6 +1931,10 @@ float[CLT_FUEL_CURVE_SIZE] cltFuelCorr;;"ratio", 1, 0, 0, 5, 2
 #define IAT_CURVE_SIZE 16
 float[IAT_CURVE_SIZE] iatFuelCorrBins;;"C", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
 float[IAT_CURVE_SIZE] iatFuelCorr;;"ratio", 1, 0, 0, 5, 2
+
+#define CLT_AFR_CURVE_SIZE 8
+float[CLT_AFR_CURVE_SIZE] cltAFRTargetCorrBins;;"C", 1, 0, -100, @@CLT_UPPER_LIMIT@@, 2
+float[CLT_AFR_CURVE_SIZE] cltAFRTargetCorr;;"ratio", 1, 0, 0.5, 1.5, 2
 
 	float[CRANKING_CURVE_SIZE] crankingFuelCoef;;"ratio", 1, 0, 0, 50, 2
 	float[CRANKING_CURVE_SIZE] crankingFuelBins;;"C", 1, 0, -80, @@CLT_UPPER_LIMIT@@, 2
@@ -1986,6 +1998,15 @@ uint8_t[FUEL_LOAD_COUNT x FUEL_RPM_COUNT] autoscale lambdaTable;;"afr", {1/@@PAC
 !	lambda_table_t lambdaTable
 !	afr_table_t afrTable
 ! end_union
+
+#define STFT_TIMECONST_SIZE 8
+
+float[STFT_TIMECONST_SIZE] stftTimeConstLoadBins;;"load", 1, 0, 0, 400, 2
+float[STFT_TIMECONST_SIZE] stftTimeConstRpmBins;;"RPM", 1, 0, 0, 18000, 0
+float[STFT_TIMECONST_SIZE x STFT_TIMECONST_SIZE] stftTimeConstTable;;"time(s)", 1, 0, 0, 90, 2
+
+float[STFT_TIMECONST_SIZE x STFT_TIMECONST_SIZE] stftAuthorityAddFuelTable;;"%", 1, 0, 0, 50, 2
+float[STFT_TIMECONST_SIZE x STFT_TIMECONST_SIZE] stftAuthorityRemoveFuelTable;;"%", 1, 0, 0, 50, 2
 
 uint16_t[FUEL_LOAD_COUNT] lambdaLoadBins;;"",	1, 0, 0, 1000, 0
 uint16_t[FUEL_RPM_COUNT] lambdaRpmBins;;"RPM",	  1, 0, 0, 18000, 0
@@ -2139,12 +2160,13 @@ uint16_t[INJ_STAGING_COUNT] injectorStagingRpmBins;;"RPM",  1, 0, 0, 18000, 0
 #define WWAE_TABLE_SIZE 8
 
 int8_t[WWAE_TABLE_SIZE] wwCltBins;;"deg C", 1, 0, -40, 120, 0
-uint8_t[WWAE_TABLE_SIZE] autoscale wwTauCltValues;;"", 0.01, 0, 0, 2.5, 2
-uint8_t[WWAE_TABLE_SIZE] autoscale wwBetaCltValues;;"", 0.01, 0, 0, 1, 2
+float[WWAE_TABLE_SIZE]  wwTauCltValues;;"", 1 , 0, 0, 2.5, 4
+float[WWAE_TABLE_SIZE]  wwBetaCltValues;;"", 1 , 0, 0, 1, 4
 
-uint8_t[WWAE_TABLE_SIZE] wwMapBins;;"kPa", 1, 0, 0, 250, 0
-uint8_t[WWAE_TABLE_SIZE] autoscale wwTauMapValues;;"", 0.01, 0, 0, 2.5, 2
-uint8_t[WWAE_TABLE_SIZE] autoscale wwBetaMapValues;;"", 0.01, 0, 0, 2.5, 2
+uint16_t[WWAE_TABLE_SIZE] wwMapBins;;"kPa", 1, 0, 0, 250, 0
+uint16_t[WWAE_TABLE_SIZE] wwRpmBins;;"RPM", 1, 0, 0, 25000, 0
+float[WWAE_TABLE_SIZE x WWAE_TABLE_SIZE]  wwTauMapTable;;"", 1, 0, 0, 2.5, 4
+float[WWAE_TABLE_SIZE x WWAE_TABLE_SIZE]  wwBetaMapTable;;"", 1, 0, 0, 2.5, 4
 
 uint8_t[HPFP_LOBE_PROFILE_SIZE] autoscale hpfpLobeProfileQuantityBins;;"%", 0.5, 0, 0, 100, 1
 uint8_t[HPFP_LOBE_PROFILE_SIZE] autoscale hpfpLobeProfileAngle;;"deg", 0.5, 0, 0, 125, 1
@@ -2275,6 +2297,26 @@ uint8_t[TRAILING_SPARK_SIZE] autoscale trailingSparkLoadBins;;"Load", 5, 0, 0,  
 
 uint8_t[4] autoscale maximumOilPressureBins;;"RPM", 100, 0, 0, 25000, 0
 uint8_t[4] autoscale maximumOilPressureValues;;"kPa", 10, 0, 0, 2000, 0
+
+#define WOT_TPS_SIZE 10
+float[WOT_TPS_SIZE] wotTpsRpmBins;TPS WOT Curve - specify TPS opening to be considered wide open throttle at RPM ;"RPM", 1, 0, 0, 25000, 0
+float[WOT_TPS_SIZE] wotTpsValues;TPS WOT Curve - specify TPS opening to be considered wide open throttle at RPM;"%", 1, 0, 0, 100, 2
+
+#define BUTTON_BOX_CMDS 64
+uint8_t[BUTTON_BOX_CMDS] buttonBoxBins;buttonboxbins;;"keycode", 1,0,0,255,0
+uint8_t[BUTTON_BOX_CMDS] buttonBoxCmds;button commands;;"id" , 1,0,0,255,0
+
+bit resetCanToggleInhibit1; can_reset command resets canToggle1 - launch control
+bit resetCanToggleInhibit2; can_reset command resets canToggle2 - DFCO invert
+bit resetCanToggleInhibit3; can_reset command resets canToggle3 - can box idle up
+bit resetCanToggleInhibit4; can_reset command resets canToggle4
+bit resetCanToggleInhibit5; can_reset command resets canToggle5
+bit resetCanToggleInhibit6; can_reset command resets canToggle6
+bit resetCanToggleInhibit7; can_reset command resets canToggle7
+bit resetCanToggleInhibit8; can_reset command resets canToggle8
+
+uint8_t autoscale canBoxIdleUpRpm;"can box idle up demand";"RPM",50, 0, 0, 1000, 0
+float canBoxIdleUpPercentage;"can box idle up demand %";"%", 1, 0, 0, 100, 1
 
 @@BOARD_CONFIG_FROM_FILE@@
 

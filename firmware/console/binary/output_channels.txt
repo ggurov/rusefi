@@ -434,6 +434,22 @@ float mapFast
   float throttleEffectiveAreaOpening
 
   uint32_t mcuSerial;;"", 1, 0, 0, 4294967295, 0
+  int8_t pedalToTpsIndex
+  float globalAFRTrim;Global target AFR trim;"%", 1,0,-0.2,0.2,3
+  uint16_t lastCanButtonSeen
+  uint16_t lastCanButtonFoundIdx
 
-	uint8_t[48 iterate] unusedAtTheEnd;;"",1, 0, 0, 0, 0
+! launch overridee
+bit canButtonToggle1
+! dfco invert
+bit canButtonToggle2
+! extra idleup
+bit canButtonToggle3
+bit canButtonToggle4
+bit canButtonToggle5
+bit canButtonToggle6
+bit canButtonToggle7
+bit canButtonToggle8
+
+	uint8_t[37 iterate] unusedAtTheEnd;;"",1, 0, 0, 0, 0
 end_struct

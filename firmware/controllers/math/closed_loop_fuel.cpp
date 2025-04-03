@@ -13,6 +13,8 @@ struct FuelingBank {
 
 static FuelingBank banks[STFT_BANK_COUNT];
 
+static size_t prev_binIdx;
+
 static Deadband<25> idleDeadband;
 static Deadband<2> overrunDeadband;
 static Deadband<2> loadDeadband;
