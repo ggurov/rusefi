@@ -444,10 +444,10 @@ int getSavedBenchTestPinStates(uint32_t durationsInStateMs[2]) {
 #endif // EFI_SIMULATOR
 }
 
-static uint8_t hwButtonBox1Lookup(uint16_t index) {
-    uint8_t firstKey = 0;
-    firstKey = index & 0xFF;
-    uint8_t foundIdx =255;
+static uint16_t hwButtonBox1Lookup(uint16_t index) {
+    uint16_t firstKey = 0;
+    firstKey = index ;
+    uint16_t foundIdx = 255;
     engine->outputChannels.lastCanButtonSeen = firstKey;
     int i;
     for (i=0;i<BUTTON_BOX_CMDS;i++) {
