@@ -2303,8 +2303,8 @@ float[WOT_TPS_SIZE] wotTpsRpmBins;TPS WOT Curve - specify TPS opening to be cons
 float[WOT_TPS_SIZE] wotTpsValues;TPS WOT Curve - specify TPS opening to be considered wide open throttle at RPM;"%", 1, 0, 0, 100, 2
 
 #define BUTTON_BOX_CMDS 64
-uint8_t[BUTTON_BOX_CMDS] buttonBoxBins;buttonboxbins;;"keycode", 1,0,0,255,0
-uint8_t[BUTTON_BOX_CMDS] buttonBoxCmds;button commands;;"id" , 1,0,0,255,0
+uint16_t[BUTTON_BOX_CMDS] buttonBoxBins;buttonboxbins;;"keycode", 1,0,0,65535,0
+uint16_t[BUTTON_BOX_CMDS] buttonBoxCmds;button commands;;"id" , 1,0,0,65535,0
 
 bit resetCanToggleInhibit1; can_reset command resets canToggle1 - launch control
 bit resetCanToggleInhibit2; can_reset command resets canToggle2 - DFCO invert

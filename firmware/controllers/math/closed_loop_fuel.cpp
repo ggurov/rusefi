@@ -148,8 +148,15 @@ ClosedLoopFuelResult fuelClosedLoopCorrection() {
 			cell.update(engineConfiguration->stft.deadband * 0.01f, engineConfiguration->stftIgnoreErrorMagnitude);
 		}
 
-		result.banks[i] = cell.getAdjustment();
+        // if we switched bins, clear the adjustment if tune says to
+		if (binIdx != prev_binIdx && engineConfiguration->STFTResetRegionChange) {
+                  banks[i].cells[binIdx].setAdjustment(0.0f);
+        }
+
+        result.banks[i] = cell.getAdjustment();
 	}
+
+    prev_binIdx = binIdx;
 
 	return result;
 }
