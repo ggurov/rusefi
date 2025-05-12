@@ -311,6 +311,18 @@ float getConfigValueByName(const char *name) {
 // driveWheelRevPerKm
 		case 991724096:
 			return engineConfiguration->driveWheelRevPerKm;
+// driveWheelRevPerKm1
+		case -1632843151:
+			return engineConfiguration->driveWheelRevPerKm1;
+// driveWheelRevPerKm2
+		case -1632843150:
+			return engineConfiguration->driveWheelRevPerKm2;
+// driveWheelRevPerKm3
+		case -1632843149:
+			return engineConfiguration->driveWheelRevPerKm3;
+// driveWheelRevPerKm4
+		case -1632843148:
+			return engineConfiguration->driveWheelRevPerKm4;
 // canSleepPeriodMs
 		case 296563315:
 			return engineConfiguration->canSleepPeriodMs;
@@ -383,6 +395,42 @@ float getConfigValueByName(const char *name) {
 // vssToothCount
 		case -1958312328:
 			return engineConfiguration->vssToothCount;
+// vssGearRatio1
+		case 1535414256:
+			return engineConfiguration->vssGearRatio1;
+// vssFilterReciprocal1
+		case 816623708:
+			return engineConfiguration->vssFilterReciprocal1;
+// vssToothCount1
+		case -199797335:
+			return engineConfiguration->vssToothCount1;
+// vssGearRatio2
+		case 1535414257:
+			return engineConfiguration->vssGearRatio2;
+// vssFilterReciprocal2
+		case 816623709:
+			return engineConfiguration->vssFilterReciprocal2;
+// vssToothCount2
+		case -199797334:
+			return engineConfiguration->vssToothCount2;
+// vssGearRatio3
+		case 1535414258:
+			return engineConfiguration->vssGearRatio3;
+// vssFilterReciprocal3
+		case 816623710:
+			return engineConfiguration->vssFilterReciprocal3;
+// vssToothCount3
+		case -199797333:
+			return engineConfiguration->vssToothCount3;
+// vssGearRatio4
+		case 1535414259:
+			return engineConfiguration->vssGearRatio4;
+// vssFilterReciprocal4
+		case 816623711:
+			return engineConfiguration->vssFilterReciprocal4;
+// vssToothCount4
+		case -199797332:
+			return engineConfiguration->vssToothCount4;
 // gapVvtTrackingLengthOverride
 		case -188591438:
 			return engineConfiguration->gapVvtTrackingLengthOverride;
@@ -1973,6 +2021,9 @@ float getConfigValueByName(const char *name) {
 // dynoCarFrontalAreaM2
 		case -1661556925:
 			return config->dynoCarFrontalAreaM2;
+// testPerBoardBit
+		case 1479919923:
+			return config->testPerBoardBit;
 	}
 	return EFI_ERROR_CODE;
 }
@@ -2489,6 +2540,26 @@ bool setConfigValueByName(const char *name, float value) {
 		engineConfiguration->driveWheelRevPerKm = value;
 		return 1;
 	}
+		case -1632843151:
+	{
+		engineConfiguration->driveWheelRevPerKm1 = value;
+		return 1;
+	}
+		case -1632843150:
+	{
+		engineConfiguration->driveWheelRevPerKm2 = value;
+		return 1;
+	}
+		case -1632843149:
+	{
+		engineConfiguration->driveWheelRevPerKm3 = value;
+		return 1;
+	}
+		case -1632843148:
+	{
+		engineConfiguration->driveWheelRevPerKm4 = value;
+		return 1;
+	}
 		case 296563315:
 	{
 		engineConfiguration->canSleepPeriodMs = (int)value;
@@ -2607,6 +2678,66 @@ bool setConfigValueByName(const char *name, float value) {
 		case -1958312328:
 	{
 		engineConfiguration->vssToothCount = (int)value;
+		return 1;
+	}
+		case 1535414256:
+	{
+		engineConfiguration->vssGearRatio1 = (int)value;
+		return 1;
+	}
+		case 816623708:
+	{
+		engineConfiguration->vssFilterReciprocal1 = (int)value;
+		return 1;
+	}
+		case -199797335:
+	{
+		engineConfiguration->vssToothCount1 = (int)value;
+		return 1;
+	}
+		case 1535414257:
+	{
+		engineConfiguration->vssGearRatio2 = (int)value;
+		return 1;
+	}
+		case 816623709:
+	{
+		engineConfiguration->vssFilterReciprocal2 = (int)value;
+		return 1;
+	}
+		case -199797334:
+	{
+		engineConfiguration->vssToothCount2 = (int)value;
+		return 1;
+	}
+		case 1535414258:
+	{
+		engineConfiguration->vssGearRatio3 = (int)value;
+		return 1;
+	}
+		case 816623710:
+	{
+		engineConfiguration->vssFilterReciprocal3 = (int)value;
+		return 1;
+	}
+		case -199797333:
+	{
+		engineConfiguration->vssToothCount3 = (int)value;
+		return 1;
+	}
+		case 1535414259:
+	{
+		engineConfiguration->vssGearRatio4 = (int)value;
+		return 1;
+	}
+		case 816623711:
+	{
+		engineConfiguration->vssFilterReciprocal4 = (int)value;
+		return 1;
+	}
+		case -199797332:
+	{
+		engineConfiguration->vssToothCount4 = (int)value;
 		return 1;
 	}
 		case -188591438:
@@ -5257,6 +5388,11 @@ bool setConfigValueByName(const char *name, float value) {
 		case -1661556925:
 	{
 		config->dynoCarFrontalAreaM2 = value;
+		return 1;
+	}
+		case 1479919923:
+	{
+		config->testPerBoardBit = (int)value;
 		return 1;
 	}
 	}

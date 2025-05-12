@@ -304,6 +304,18 @@ Cooling fan turn-off temperature threshold, in Celsius
 ### driveWheelRevPerKm
 Number of revolutions per kilometer for the wheels your vehicle speed sensor is connected to. Use an online calculator to determine this based on your tire size.
 
+### driveWheelRevPerKm1
+Number of revolutions per kilometer for the wheels your vehicle speed sensor is connected to. Use an online calculator to determine this based on your tire size.
+
+### driveWheelRevPerKm2
+Number of revolutions per kilometer for the wheels your vehicle speed sensor is connected to. Use an online calculator to determine this based on your tire size.
+
+### driveWheelRevPerKm3
+Number of revolutions per kilometer for the wheels your vehicle speed sensor is connected to. Use an online calculator to determine this based on your tire size.
+
+### driveWheelRevPerKm4
+Number of revolutions per kilometer for the wheels your vehicle speed sensor is connected to. Use an online calculator to determine this based on your tire size.
+
 ### canSleepPeriodMs
 CANbus thread period in ms
 
@@ -374,6 +386,42 @@ Number of turns of your vehicle speed sensor per turn of the wheels. For example
 Set this so your vehicle speed signal is responsive, but not noisy. Larger value give smoother but slower response.
 
 ### vssToothCount
+Number of pulses output per revolution of the shaft where your VSS is mounted. For example, GM applications of the T56 output 17 pulses per revolution of the transmission output shaft.
+
+### vssGearRatio1
+Number of turns of your vehicle speed sensor per turn of the wheels. For example if your sensor is on the transmission output, enter your axle/differential ratio. If you are using a hub-mounted sensor, enter a value of 1.0.
+
+### vssFilterReciprocal1
+Set this so your vehicle speed signal is responsive, but not noisy. Larger value give smoother but slower response.
+
+### vssToothCount1
+Number of pulses output per revolution of the shaft where your VSS is mounted. For example, GM applications of the T56 output 17 pulses per revolution of the transmission output shaft.
+
+### vssGearRatio2
+Number of turns of your vehicle speed sensor per turn of the wheels. For example if your sensor is on the transmission output, enter your axle/differential ratio. If you are using a hub-mounted sensor, enter a value of 1.0.
+
+### vssFilterReciprocal2
+Set this so your vehicle speed signal is responsive, but not noisy. Larger value give smoother but slower response.
+
+### vssToothCount2
+Number of pulses output per revolution of the shaft where your VSS is mounted. For example, GM applications of the T56 output 17 pulses per revolution of the transmission output shaft.
+
+### vssGearRatio3
+Number of turns of your vehicle speed sensor per turn of the wheels. For example if your sensor is on the transmission output, enter your axle/differential ratio. If you are using a hub-mounted sensor, enter a value of 1.0.
+
+### vssFilterReciprocal3
+Set this so your vehicle speed signal is responsive, but not noisy. Larger value give smoother but slower response.
+
+### vssToothCount3
+Number of pulses output per revolution of the shaft where your VSS is mounted. For example, GM applications of the T56 output 17 pulses per revolution of the transmission output shaft.
+
+### vssGearRatio4
+Number of turns of your vehicle speed sensor per turn of the wheels. For example if your sensor is on the transmission output, enter your axle/differential ratio. If you are using a hub-mounted sensor, enter a value of 1.0.
+
+### vssFilterReciprocal4
+Set this so your vehicle speed signal is responsive, but not noisy. Larger value give smoother but slower response.
+
+### vssToothCount4
 Number of pulses output per revolution of the shaft where your VSS is mounted. For example, GM applications of the T56 output 17 pulses per revolution of the transmission output shaft.
 
 ### gapVvtTrackingLengthOverride
@@ -1965,4 +2013,7 @@ Voltage when the wastegate is closed
 
 ### dynoCarFrontalAreaM2
 @@DYNO_CAR_FRONTAL_AREA_TOOLTIP@@
+
+### testPerBoardBit
+
 

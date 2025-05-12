@@ -131,7 +131,7 @@ public class VariableRegistryValues {
 	public static final int BOOST_BLEND_COUNT = 2;
 	public static final int BOOST_CURVE_SIZE = 5;
 	public static final int BOOST_LOAD_COUNT = 8;
-	public static final int BOOST_RPM_COUNT = 4;
+	public static final int BOOST_RPM_COUNT = 8;
 	public static final int boostType_e_CLOSED_LOOP = 1;
 	public static final int boostType_e_OPEN_LOOP = 0;
 	public static final int brain_pin_diag_e_PIN_DRIVER_OFF = 0x20;
@@ -362,7 +362,7 @@ public class VariableRegistryValues {
 	public static final int ego_sensor_e_ES_PLX = 4;
 	public static final int EGT_CHANNEL_COUNT = 8;
 	public static final int END_OF_CALIBRATION_PADDING = 44;
-	public static final int engine_configuration_s_size = 3812;
+	public static final int engine_configuration_s_size = 4012;
 	public static final int engine_load_mode_e_LM_ALPHA_N = 2;
 	public static final int engine_load_mode_e_LM_LUA = 3;
 	public static final int engine_load_mode_e_LM_MOCK = 100;
@@ -1098,13 +1098,13 @@ public class VariableRegistryValues {
 	public static final int gppwm_channel_e_GPPWM_VVT_2E = 14;
 	public static final int gppwm_channel_e_GPPWM_VVT_2I = 13;
 	public static final int gppwm_channel_e_GPPWM_Zero = 0;
-	public static final int gppwm_channel_size = 68;
+	public static final int gppwm_channel_size = 108;
 	public static final int GPPWM_CHANNELS = 4;
 	public static final int gppwm_compare_mode_e_GPPWM_GreaterThan = 0;
 	public static final int gppwm_compare_mode_e_GPPWM_LessThan = 1;
 	public static final int GPPWM_LOAD_COUNT = 8;
 	public static final int GPPWM_NOTE_SIZE = 16;
-	public static final int GPPWM_RPM_COUNT = 4;
+	public static final int GPPWM_RPM_COUNT = 8;
 	public static final String HD_MENU_NAME = "Harley";
 	public static final int HIGH_SPEED_COUNT = 32;
 	public static final int hpfp_cam_e_HPFP_CAM_EX1 = 2;
@@ -1135,7 +1135,7 @@ public class VariableRegistryValues {
 	public static final int IGN_BLEND_COUNT = 4;
 	public static final int ign_cyl_trim_s_size = 16;
 	public static final int IGN_LOAD_COUNT = 16;
-	public static final int IGN_RPM_COUNT = 8;
+	public static final int IGN_RPM_COUNT = 16;
 	public static final String IGN_TRIM_1_NAME = "Ignition trim cyl 1";
 	public static final String IGN_TRIM_2_NAME = "Ignition trim cyl 2";
 	public static final int IGN_TRIM_SIZE = 4;
@@ -1214,7 +1214,7 @@ public class VariableRegistryValues {
 	public static final int maf_sensor_type_e_Bosch0280218037 = 1;
 	public static final int maf_sensor_type_e_CUSTOM = 0;
 	public static final int maf_sensor_type_e_DensoTODO = 3;
-	public static final String MAIN_HELP_URL = "http://www.rusefi.com/";
+	public static final String MAIN_HELP_URL = "https://rusefi.com/s/uaefi";
 	public static final int MAP_ANGLE_SIZE = 8;
 	public static final int MAP_EST_LOAD_COUNT = 16;
 	public static final int MAP_EST_RPM_COUNT = 16;
@@ -1273,7 +1273,7 @@ public class VariableRegistryValues {
 	public static final int PEDAL_TO_TPS_SIZE = 8;
 	public static final String pedalSensor_NAME = "Accelerator pedal";
 	public static final String pedalToTpsTbl_NAME = "ETB pedal target";
-	public static final int persistent_config_s_size = 23280;
+	public static final int persistent_config_s_size = 23864;
 	public static final int pid_s_size = 20;
 	public static final int pin_input_mode_e_PI_DEFAULT = 0;
 	public static final int pin_input_mode_e_PI_INVERTED_DEFAULT = 4;
@@ -1336,7 +1336,7 @@ public class VariableRegistryValues {
 	public static final int SentInput_INPUT6 = 6;
 	public static final int SentInput_INPUT7 = 7;
 	public static final int SentInput_NONE = 0;
-	public static final int SIGNATURE_HASH = 564513286;
+	public static final int SIGNATURE_HASH = 45365891;
 	public static final String SIMULATOR_TUNE_BIN_FILE_NAME = "generated/simulator_tune_image.bin";
 	public static final String SIMULATOR_TUNE_BIN_FILE_NAME_PREFIX = "generated/simulator_tune_image";
 	public static final String SIMULATOR_TUNE_BIN_FILE_NAME_SUFFIX = ".bin";
@@ -1374,6 +1374,7 @@ public class VariableRegistryValues {
 	public static final int thermistor_conf_s_size = 28;
 	public static final int ThermistorConf_size = 32;
 	public static final int THR_EST_SIZE = 12;
+	public static final int TIMING_ADJUSTMENT_SIZE = 4;
 	public static final int timing_mode_e_TM_DYNAMIC = 0;
 	public static final int timing_mode_e_TM_FIXED = 1;
 	public static final int tle8888_mode_e_TL_AUTO = 0;
@@ -1392,7 +1393,7 @@ public class VariableRegistryValues {
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_BUTTON = 0;
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_DOWN_SWITCH = 2;
 	public static final int torqueReductionActivationMode_e_TORQUE_REDUCTION_CLUTCH_UP_SWITCH = 3;
-	public static final int TOTAL_CONFIG_SIZE = 23280;
+	public static final int TOTAL_CONFIG_SIZE = 23864;
 	public static final int TPS_2_BYTE_PACKING_MULT = 100;
 	public static final int TPS_PPS_TOO_HIGH_THRESHOLD = 110;
 	public static final int TPS_PPS_TOO_LOW_THRESHOLD = -10;
@@ -1617,11 +1618,11 @@ public class VariableRegistryValues {
 	public static final int TS_RESPONSE_UNDERRUN = 0x80;
 	public static final int TS_RESPONSE_UNRECOGNIZED_COMMAND = 0x83;
 	public static final char TS_SET_LOGGER_SWITCH = 'l';
-	public static final String TS_SIGNATURE = "rusEFI master.2025.05.12.atlas.564513286";
+	public static final String TS_SIGNATURE = "rusEFI 20250512-4ws-trac-1.2025.05.12.uaefi.45365891";
 	public static final char TS_SIMULATE_CAN = '>';
 	public static final char TS_SINGLE_WRITE_COMMAND = 'W';
 	public static final char TS_TEST_COMMAND = 't';
-	public static final int TS_TOTAL_OUTPUT_SIZE = 1852;
+	public static final int TS_TOTAL_OUTPUT_SIZE = 1860;
 	public static final String TS_TRIGGER_SCOPE_CHANNEL_1_NAME = "Channel 1";
 	public static final String TS_TRIGGER_SCOPE_CHANNEL_2_NAME = "Channel 2";
 	public static final int TS_TRIGGER_SCOPE_DISABLE = 5;
@@ -1705,5 +1706,6 @@ public class VariableRegistryValues {
 	public static final int VVT_TABLE_SIZE = 8;
 	public static final int VVT_TRACKING_LENGTH = 4;
 	public static final int WARNING_BUFFER_SIZE = 120;
+	public static final int WHEEL_SPEED_SENSOR_COUNT = 4;
 	public static final int WWAE_TABLE_SIZE = 8;
 }

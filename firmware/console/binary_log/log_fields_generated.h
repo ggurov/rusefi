@@ -347,6 +347,10 @@ static const LogField fields[] = {
 	{engine->outputChannels.mafMeasured2, "MAF #2", "kg/h", 1},
 	{engine->outputChannels.schedulingUsedCount, "schedulingUsedCount", "", 0},
 	{engine->outputChannels.vehicleSpeedKph, "Vehicle Speed", "kph", 2},
+	{engine->outputChannels.vehicleSpeedKph1, "Wheel Speed FL", "kph", 2},
+	{engine->outputChannels.vehicleSpeedKph2, "Wheel Speed FR", "kph", 2},
+	{engine->outputChannels.vehicleSpeedKph3, "Wheel Speed RL", "kph", 2},
+	{engine->outputChannels.vehicleSpeedKph4, "Wheel Speed RR", "kph", 2},
 	{engine->outputChannels.Gego, "Gego", "%", 2},
 	{engine->outputChannels.testBenchIter, "testBenchIter", "count", 0},
 	{engine->outputChannels.oilTemp, "oilTemp", "deg C", 1},
@@ -417,7 +421,7 @@ static const LogField fields[] = {
 	{engine->outputChannels.fastAdcLastError, "ECU: Fast ADC error type", "", 0},
 	{engine->outputChannels.fastAdcPeriod, "ECU: Fast ADC period", "ticks", 0},
 	{engine->outputChannels.fastAdcConversionCount, "ECU: Fast ADC conversions", "N", 0},
-	{engine->outputChannels, 836, 0, "isMapAveraging", ""},
+	{engine->outputChannels, 844, 0, "isMapAveraging", ""},
 #if EFI_ENGINE_CONTROL
 	{engine->fuelComputer.totalFuelCorrection, "Fuel: Total correction", "mult", 2, "Fuel: math"},
 #endif

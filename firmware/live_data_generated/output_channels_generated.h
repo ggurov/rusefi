@@ -1227,358 +1227,382 @@ struct output_channels_s {
 	 */
 	scaled_channel<uint16_t, 100, 1> vehicleSpeedKph = (uint16_t)0;
 	/**
-	 * units: %
+	 * Wheel Speed FL
+	 * units: kph
 	 * offset 716
+	 */
+	scaled_channel<uint16_t, 100, 1> vehicleSpeedKph1 = (uint16_t)0;
+	/**
+	 * Wheel Speed FR
+	 * units: kph
+	 * offset 718
+	 */
+	scaled_channel<uint16_t, 100, 1> vehicleSpeedKph2 = (uint16_t)0;
+	/**
+	 * Wheel Speed RL
+	 * units: kph
+	 * offset 720
+	 */
+	scaled_channel<uint16_t, 100, 1> vehicleSpeedKph3 = (uint16_t)0;
+	/**
+	 * Wheel Speed RR
+	 * units: kph
+	 * offset 722
+	 */
+	scaled_channel<uint16_t, 100, 1> vehicleSpeedKph4 = (uint16_t)0;
+	/**
+	 * units: %
+	 * offset 724
 	 */
 	scaled_channel<uint16_t, 100, 1> Gego = (uint16_t)0;
 	/**
 	 * units: count
-	 * offset 718
+	 * offset 726
 	 */
 	uint16_t testBenchIter = (uint16_t)0;
 	/**
 	 * units: deg C
-	 * offset 720
+	 * offset 728
 	 */
 	scaled_channel<int16_t, 100, 1> oilTemp = (int16_t)0;
 	/**
 	 * units: deg C
-	 * offset 722
+	 * offset 730
 	 */
 	scaled_channel<int16_t, 100, 1> fuelTemp = (int16_t)0;
 	/**
 	 * units: deg C
-	 * offset 724
+	 * offset 732
 	 */
 	scaled_channel<int16_t, 100, 1> ambientTemp = (int16_t)0;
 	/**
 	 * units: deg C
-	 * offset 726
+	 * offset 734
 	 */
 	scaled_channel<int16_t, 100, 1> compressorDischargeTemp = (int16_t)0;
 	/**
 	 * units: kPa
-	 * offset 728
+	 * offset 736
 	 */
 	scaled_channel<uint16_t, 30, 1> compressorDischargePressure = (uint16_t)0;
 	/**
 	 * units: kPa
-	 * offset 730
+	 * offset 738
 	 */
 	scaled_channel<uint16_t, 30, 1> throttleInletPressure = (uint16_t)0;
 	/**
 	 * units: sec
-	 * offset 732
+	 * offset 740
 	 */
 	uint16_t ignitionOnTime = (uint16_t)0;
 	/**
 	 * units: sec
-	 * offset 734
+	 * offset 742
 	 */
 	uint16_t engineRunTime = (uint16_t)0;
 	/**
 	 * units: km
-	 * offset 736
+	 * offset 744
 	 */
 	scaled_channel<uint16_t, 10, 1> distanceTraveled = (uint16_t)0;
 	/**
 	 * @@GAUGE_NAME_AFR_GAS_SCALE@@
 	 * units: AFR
-	 * offset 738
+	 * offset 746
 	 */
 	scaled_channel<uint16_t, 1000, 1> afrGasolineScale = (uint16_t)0;
 	/**
 	 * @@GAUGE_NAME_AFR2_GAS_SCALE@@
 	 * units: AFR
-	 * offset 740
+	 * offset 748
 	 */
 	scaled_channel<uint16_t, 1000, 1> afr2GasolineScale = (uint16_t)0;
 	/**
 	 * need 4 byte alignment
 	 * units: units
-	 * offset 742
+	 * offset 750
 	 */
-	uint8_t alignmentFill_at_742[2] = {};
+	uint8_t alignmentFill_at_750[2] = {};
 	/**
-	 * offset 744
+	 * offset 752
 	 */
 	float wheelSlipRatio = (float)0;
 	/**
-	 * offset 748
+	 * offset 756
 	 */
 	uint8_t ignitorDiagnostic[MAX_CYLINDER_COUNT] = {};
 	/**
-	 * offset 760
+	 * offset 768
 	 */
 	uint8_t injectorDiagnostic[MAX_CYLINDER_COUNT] = {};
 	/**
 	 * @@GAUGE_NAME_FUEL_LAST_INJECTION_STAGE_2@@
 	 * units: ms
-	 * offset 772
+	 * offset 780
 	 */
 	scaled_channel<uint16_t, 300, 1> actualLastInjectionStage2 = (uint16_t)0;
 	/**
 	 * @@GAUGE_NAME_FUEL_INJ_DUTY_STAGE_2@@
 	 * units: %
-	 * offset 774
+	 * offset 782
 	 */
 	scaled_channel<uint8_t, 2, 1> injectorDutyCycleStage2 = (uint8_t)0;
 	/**
-	 * offset 775
+	 * offset 783
 	 */
 	uint8_t rawFlexFreq = (uint8_t)0;
 	/**
-	 * offset 776
+	 * offset 784
 	 */
 	uint8_t unusedWasAdc = (uint8_t)0;
 	/**
-	 * offset 777
+	 * offset 785
 	 */
 	uint8_t deviceUid = (uint8_t)0;
 	/**
-	 * offset 778
+	 * offset 786
 	 */
 	uint16_t mc33810spiErrorCounter = (uint16_t)0;
 	/**
-	 * offset 780
+	 * offset 788
 	 */
 	uint8_t sadDwellRatioCounter = (uint8_t)0;
 	/**
-	 * offset 781
+	 * offset 789
 	 */
 	uint8_t injectionPrimingCounter = (uint8_t)0;
 	/**
-	 * offset 782
+	 * offset 790
 	 */
 	uint8_t tempLogging2 = (uint8_t)0;
 	/**
 	 * need 4 byte alignment
 	 * units: units
-	 * offset 783
+	 * offset 791
 	 */
-	uint8_t alignmentFill_at_783[1] = {};
+	uint8_t alignmentFill_at_791[1] = {};
 	/**
 	 * @@GAUGE_NAME_AC_PRESSURE@@
 	 * units: kPa
-	 * offset 784
+	 * offset 792
 	 */
 	float acPressure = (float)0;
 	/**
 	 * units: V
-	 * offset 788
+	 * offset 796
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxAnalog1 = (int16_t)0;
 	/**
 	 * units: V
-	 * offset 790
+	 * offset 798
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxAnalog2 = (int16_t)0;
 	/**
 	 * units: V
-	 * offset 792
+	 * offset 800
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxAnalog3 = (int16_t)0;
 	/**
 	 * units: V
-	 * offset 794
+	 * offset 802
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxAnalog4 = (int16_t)0;
 	/**
 	 * ECU: Fast ADC errors
-	 * offset 796
+	 * offset 804
 	 */
 	uint8_t fastAdcErrorCount = (uint8_t)0;
 	/**
 	 * ECU: Slow ADC errors
-	 * offset 797
+	 * offset 805
 	 */
 	uint8_t slowAdcErrorCount = (uint8_t)0;
 	/**
 	 * units: V
-	 * offset 798
+	 * offset 806
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxTemp1 = (int16_t)0;
 	/**
 	 * units: V
-	 * offset 800
+	 * offset 808
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAuxTemp2 = (int16_t)0;
 	/**
 	 * units: V
-	 * offset 802
+	 * offset 810
 	 */
 	scaled_channel<int16_t, 1000, 1> rawAmbientTemp = (int16_t)0;
 	/**
-	 * offset 804
+	 * offset 812
 	 */
 	uint32_t rtcUnixEpochTime = (uint32_t)0;
 	/**
-	 * offset 808
+	 * offset 816
 	 */
 	int8_t sparkCutReasonBlinker = (int8_t)0;
 	/**
-	 * offset 809
+	 * offset 817
 	 */
 	int8_t fuelCutReasonBlinker = (int8_t)0;
 	/**
-	 * offset 810
+	 * offset 818
 	 */
 	int16_t hp = (int16_t)0;
 	/**
-	 * offset 812
+	 * offset 820
 	 */
 	int16_t torque = (int16_t)0;
 	/**
 	 * need 4 byte alignment
 	 * units: units
-	 * offset 814
+	 * offset 822
 	 */
-	uint8_t alignmentFill_at_814[2] = {};
-	/**
-	 * offset 816
-	 */
-	float throttlePressureRatio = (float)0;
-	/**
-	 * offset 820
-	 */
-	float throttleEffectiveAreaOpening = (float)0;
+	uint8_t alignmentFill_at_822[2] = {};
 	/**
 	 * offset 824
 	 */
-	uint32_t mcuSerial = (uint32_t)0;
+	float throttlePressureRatio = (float)0;
 	/**
 	 * offset 828
+	 */
+	float throttleEffectiveAreaOpening = (float)0;
+	/**
+	 * offset 832
+	 */
+	uint32_t mcuSerial = (uint32_t)0;
+	/**
+	 * offset 836
 	 */
 	uint8_t sd_error = (uint8_t)0;
 	/**
 	 * ECU: Fast ADC overruns
-	 * offset 829
+	 * offset 837
 	 */
 	uint8_t fastAdcOverrunCount = (uint8_t)0;
 	/**
 	 * ECU: Slow ADC overruns
-	 * offset 830
+	 * offset 838
 	 */
 	uint8_t slowAdcOverrunCount = (uint8_t)0;
 	/**
 	 * ECU: Fast ADC error type
-	 * offset 831
+	 * offset 839
 	 */
 	uint8_t fastAdcLastError = (uint8_t)0;
 	/**
 	 * ECU: Fast ADC period
 	 * units: ticks
-	 * offset 832
+	 * offset 840
 	 */
 	uint16_t fastAdcPeriod = (uint16_t)0;
 	/**
 	 * ECU: Fast ADC conversions
 	 * units: N
-	 * offset 834
+	 * offset 842
 	 */
 	uint16_t fastAdcConversionCount = (uint16_t)0;
 	/**
-	offset 836 bit 0 */
+	offset 844 bit 0 */
 	bool isMapAveraging : 1 {};
 	/**
-	offset 836 bit 1 */
-	bool unusedBit_304_1 : 1 {};
+	offset 844 bit 1 */
+	bool unusedBit_308_1 : 1 {};
 	/**
-	offset 836 bit 2 */
-	bool unusedBit_304_2 : 1 {};
+	offset 844 bit 2 */
+	bool unusedBit_308_2 : 1 {};
 	/**
-	offset 836 bit 3 */
-	bool unusedBit_304_3 : 1 {};
+	offset 844 bit 3 */
+	bool unusedBit_308_3 : 1 {};
 	/**
-	offset 836 bit 4 */
-	bool unusedBit_304_4 : 1 {};
+	offset 844 bit 4 */
+	bool unusedBit_308_4 : 1 {};
 	/**
-	offset 836 bit 5 */
-	bool unusedBit_304_5 : 1 {};
+	offset 844 bit 5 */
+	bool unusedBit_308_5 : 1 {};
 	/**
-	offset 836 bit 6 */
-	bool unusedBit_304_6 : 1 {};
+	offset 844 bit 6 */
+	bool unusedBit_308_6 : 1 {};
 	/**
-	offset 836 bit 7 */
-	bool unusedBit_304_7 : 1 {};
+	offset 844 bit 7 */
+	bool unusedBit_308_7 : 1 {};
 	/**
-	offset 836 bit 8 */
-	bool unusedBit_304_8 : 1 {};
+	offset 844 bit 8 */
+	bool unusedBit_308_8 : 1 {};
 	/**
-	offset 836 bit 9 */
-	bool unusedBit_304_9 : 1 {};
+	offset 844 bit 9 */
+	bool unusedBit_308_9 : 1 {};
 	/**
-	offset 836 bit 10 */
-	bool unusedBit_304_10 : 1 {};
+	offset 844 bit 10 */
+	bool unusedBit_308_10 : 1 {};
 	/**
-	offset 836 bit 11 */
-	bool unusedBit_304_11 : 1 {};
+	offset 844 bit 11 */
+	bool unusedBit_308_11 : 1 {};
 	/**
-	offset 836 bit 12 */
-	bool unusedBit_304_12 : 1 {};
+	offset 844 bit 12 */
+	bool unusedBit_308_12 : 1 {};
 	/**
-	offset 836 bit 13 */
-	bool unusedBit_304_13 : 1 {};
+	offset 844 bit 13 */
+	bool unusedBit_308_13 : 1 {};
 	/**
-	offset 836 bit 14 */
-	bool unusedBit_304_14 : 1 {};
+	offset 844 bit 14 */
+	bool unusedBit_308_14 : 1 {};
 	/**
-	offset 836 bit 15 */
-	bool unusedBit_304_15 : 1 {};
+	offset 844 bit 15 */
+	bool unusedBit_308_15 : 1 {};
 	/**
-	offset 836 bit 16 */
-	bool unusedBit_304_16 : 1 {};
+	offset 844 bit 16 */
+	bool unusedBit_308_16 : 1 {};
 	/**
-	offset 836 bit 17 */
-	bool unusedBit_304_17 : 1 {};
+	offset 844 bit 17 */
+	bool unusedBit_308_17 : 1 {};
 	/**
-	offset 836 bit 18 */
-	bool unusedBit_304_18 : 1 {};
+	offset 844 bit 18 */
+	bool unusedBit_308_18 : 1 {};
 	/**
-	offset 836 bit 19 */
-	bool unusedBit_304_19 : 1 {};
+	offset 844 bit 19 */
+	bool unusedBit_308_19 : 1 {};
 	/**
-	offset 836 bit 20 */
-	bool unusedBit_304_20 : 1 {};
+	offset 844 bit 20 */
+	bool unusedBit_308_20 : 1 {};
 	/**
-	offset 836 bit 21 */
-	bool unusedBit_304_21 : 1 {};
+	offset 844 bit 21 */
+	bool unusedBit_308_21 : 1 {};
 	/**
-	offset 836 bit 22 */
-	bool unusedBit_304_22 : 1 {};
+	offset 844 bit 22 */
+	bool unusedBit_308_22 : 1 {};
 	/**
-	offset 836 bit 23 */
-	bool unusedBit_304_23 : 1 {};
+	offset 844 bit 23 */
+	bool unusedBit_308_23 : 1 {};
 	/**
-	offset 836 bit 24 */
-	bool unusedBit_304_24 : 1 {};
+	offset 844 bit 24 */
+	bool unusedBit_308_24 : 1 {};
 	/**
-	offset 836 bit 25 */
-	bool unusedBit_304_25 : 1 {};
+	offset 844 bit 25 */
+	bool unusedBit_308_25 : 1 {};
 	/**
-	offset 836 bit 26 */
-	bool unusedBit_304_26 : 1 {};
+	offset 844 bit 26 */
+	bool unusedBit_308_26 : 1 {};
 	/**
-	offset 836 bit 27 */
-	bool unusedBit_304_27 : 1 {};
+	offset 844 bit 27 */
+	bool unusedBit_308_27 : 1 {};
 	/**
-	offset 836 bit 28 */
-	bool unusedBit_304_28 : 1 {};
+	offset 844 bit 28 */
+	bool unusedBit_308_28 : 1 {};
 	/**
-	offset 836 bit 29 */
-	bool unusedBit_304_29 : 1 {};
+	offset 844 bit 29 */
+	bool unusedBit_308_29 : 1 {};
 	/**
-	offset 836 bit 30 */
-	bool unusedBit_304_30 : 1 {};
+	offset 844 bit 30 */
+	bool unusedBit_308_30 : 1 {};
 	/**
-	offset 836 bit 31 */
-	bool unusedBit_304_31 : 1 {};
+	offset 844 bit 31 */
+	bool unusedBit_308_31 : 1 {};
 	/**
-	 * offset 840
+	 * offset 848
 	 */
 	uint8_t unusedAtTheEnd[36] = {};
 };
-static_assert(sizeof(output_channels_s) == 876);
+static_assert(sizeof(output_channels_s) == 884);
 
 // end
 // this section was generated automatically by rusEFI tool config_definition_base-all.jar based on (unknown script) console/binary/output_channels.txt

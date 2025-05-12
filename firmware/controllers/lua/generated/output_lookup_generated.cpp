@@ -728,6 +728,18 @@ float getOutputValueByName(const char *name) {
 // vehicleSpeedKph
 		case -1925174695:
 			return engine->outputChannels.vehicleSpeedKph;
+// vehicleSpeedKph1
+		case 893744554:
+			return engine->outputChannels.vehicleSpeedKph1;
+// vehicleSpeedKph2
+		case 893744555:
+			return engine->outputChannels.vehicleSpeedKph2;
+// vehicleSpeedKph3
+		case 893744556:
+			return engine->outputChannels.vehicleSpeedKph3;
+// vehicleSpeedKph4
+		case 893744557:
+			return engine->outputChannels.vehicleSpeedKph4;
 // Gego
 		case 2090288615:
 			return engine->outputChannels.Gego;

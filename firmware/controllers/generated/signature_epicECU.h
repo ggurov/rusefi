@@ -2,5 +2,5 @@
 // was generated automatically by rusEFI tool config_definition-all.jar based on gen_config.sh by SignatureConsumer
 //
 
-#define SIGNATURE_HASH 45365891
-#define TS_SIGNATURE "rusEFI 20250512-4ws-trac-1.2025.05.12.uaefi.45365891"
+#define SIGNATURE_HASH 4211386394
+#define TS_SIGNATURE "rusEFI EPIC2025051104.2025.05.12.epicECU.4211386394"
